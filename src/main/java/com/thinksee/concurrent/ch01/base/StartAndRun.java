@@ -13,8 +13,8 @@ public class StartAndRun {
     public static class ThreadRun extends Thread {
         @Override
         public void run() {
-            int i;
-            while( (i=90) > 0) {
+            int i = 6;
+            while(--i > 0) {
                 try {
                     Thread.sleep(100);
                 }catch (InterruptedException e) {

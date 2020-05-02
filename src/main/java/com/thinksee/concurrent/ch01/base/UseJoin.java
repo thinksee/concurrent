@@ -7,6 +7,8 @@ package com.thinksee.concurrent.ch01.base;
  * @github https://www.github.com/thinksee
  * @description Join方式
  *  谁join谁的权利大
+ *  1. join会抢占CPU，使得其他线程需要等待join线程完成任务之后再去执行。
+ *  2. join的当前的线程不会失去对锁的控制器
  **/
 public class UseJoin {
     static class Goddess implements Runnable {
@@ -30,7 +32,7 @@ public class UseJoin {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println(Thread.currentThread().getName() + "Goddess打饭完成。。。");
+                System.out.println(Thread.currentThread().getName() + "打饭完成。。。");
             }
         }
     }
@@ -56,7 +58,13 @@ public class UseJoin {
             }
         }
     }
-
+    /*
+    * thinksee排队打饭。。。。
+    Goddess开始排队打饭。。。
+    GoddessBoyfriend完成打饭。。。
+    GoddessGoddess打饭完成。。。
+    thinksee打饭OK。
+    * */
     public static void main(String[] args) throws InterruptedException {
         Thread t1 = Thread.currentThread();
         t1.setName("thinksee");

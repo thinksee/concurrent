@@ -5,6 +5,8 @@ package com.thinksee.concurrent.ch01.base;
  *
  * @author 1563896950@qq.com
  * @github https://www.github.com/thinksee
+ * @description 设置为守护线程的功能是为了让守护线程随着主线程的结束而结束。
+ *          使用场景包括GC的内存收集。
  **/
 public class DaemonThread {
     private static class UseThread extends Thread {
@@ -29,7 +31,7 @@ public class DaemonThread {
     * 1. setDeamon不要放在start之后
     * 2. setDeamon的线程在finally函数中可能执行不了
     * 3. setDeamon的线程其子线程也为setDeamon线程
-    * */
+    */
     public static void main(String[] args) throws InterruptedException {
         UseThread useThread = new UseThread();
 //

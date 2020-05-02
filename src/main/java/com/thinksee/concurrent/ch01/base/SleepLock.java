@@ -8,6 +8,7 @@ package com.thinksee.concurrent.ch01.base;
  * @description 测试sleep对锁的影响
  * 1. 对象锁，内置synchronized的修饰对象是一个对象类型（即Object的子类）
  * 2. 类锁、this锁
+ * 3. sleep会丢失CPU的执行，但是不会失去锁。
  **/
 public class SleepLock {
     /*

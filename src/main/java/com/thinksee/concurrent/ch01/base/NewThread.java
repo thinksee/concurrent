@@ -12,11 +12,30 @@ package com.thinksee.concurrent.ch01.base;
  * 3. start之后再开始run会？？todo
  **/
 public class NewThread {
+    /*
+    * main start function....
+    UserRunnable run function....
+    UserRunnable
+    UserRunnable run function....
+    * */
     private static class UserThread extends Thread{
         @Override
         public void run() {
             this.setName("UserThread");
             System.out.println(Thread.currentThread().getName());
+        }
+
+        @Override
+        public synchronized void start() {
+//            super.start();
+            /*
+            * main start function....
+            UserRunnable run function....
+            UserRunnable
+            UserRunnable run function....
+            UserThread
+            * */
+            System.out.println(Thread.currentThread().getName() + " start function....");
         }
     }
 
@@ -24,18 +43,19 @@ public class NewThread {
         @Override
         public void run() {
             Thread.currentThread().setName("UserRunnable");
-            System.out.println(Thread.currentThread().getName());
+            System.out.println(Thread.currentThread().getName() + " run function....");
         }
     }
 
     public static void main(String[] args) {
         UserThread userThread = new UserThread();
-        userThread.start();
+//        userThread.start();
 //        userThread.start();
         UseRunnable useRunnable = new UseRunnable();
         useRunnable.run();
-
-        new Thread(useRunnable).start();
+        // UserRunnable run function....
+        //UserRunnable
+//        new Thread(useRunnable).start();
         userThread.run();
     }
 }

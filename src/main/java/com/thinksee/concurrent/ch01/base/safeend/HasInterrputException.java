@@ -5,8 +5,9 @@ package com.thinksee.concurrent.ch01.base.safeend;
  *
  * @author 1563896950@qq.com
  * @github https://www.github.com/thinksee
+ * @description InterruptedException中断sleep，会产生sleep interrupted异常，但是不会设置中断标志位。
  **/
-public class HashInterrputException {
+public class HasInterrputException {
 
     private static class UseThread extends Thread {
         public UseThread(String name) {
@@ -18,7 +19,7 @@ public class HashInterrputException {
             String name = Thread.currentThread().getName();
             while (!isInterrupted()) {
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(10); // 若在执行这条语句的时候产生中断会抛出 java.lang.InterruptedException: sleep interrupted
                 } catch (InterruptedException e) {
                     System.out.println(name + " in InterruptionException interrupt flag is " + interrupted());
 //                    interrupt();
@@ -33,7 +34,7 @@ public class HashInterrputException {
     public static void main(String[] args) throws InterruptedException {
         Thread endThread = new UseThread("HasInterruptEX");
         endThread.start();
-        /**
+        /*
          * 50 :
          * 1. java.lang.InterruptedException: sleep interrupted
          * 2. HasInterruptEX interrupt flag is true
