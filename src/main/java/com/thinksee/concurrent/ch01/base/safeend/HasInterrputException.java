@@ -22,7 +22,7 @@ public class HasInterrputException {
                     Thread.sleep(10); // 若在执行这条语句的时候产生中断会抛出 java.lang.InterruptedException: sleep interrupted
                 } catch (InterruptedException e) {
                     System.out.println(name + " in InterruptionException interrupt flag is " + interrupted());
-//                    interrupt();
+                    interrupt();
                     e.printStackTrace();
                 }
                 System.out.println(name + ", I am extends Thread.");
